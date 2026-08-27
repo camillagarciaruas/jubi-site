@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política de Privacidade — Jubí</title>
+<meta name="description" content="Como o aplicativo Jubí trata os dados pessoais de quem usa o app, conforme a LGPD.">
+<style>
+  :root {
+    --magenta: #A855F7;
+    --fucsia: #C026D3;
+    --lilas: #F5F3FF;
+    --texto: #374151;
+    --suave: #6B7280;
+    --borda: #E5E7EB;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--lilas);
+    color: var(--texto);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    -webkit-text-size-adjust: 100%;
+  }
+  header {
+    background: linear-gradient(135deg, var(--magenta), var(--fucsia));
+    color: #fff;
+    padding: 48px 24px 40px;
+    text-align: center;
+  }
+  header h1 { margin: 0 0 8px; font-size: 1.9rem; letter-spacing: -0.5px; }
+  /* Precisa da cor explícita: a regra p geral abaixo vence a cor herdada do header. */
+  header p { margin: 0; color: #fff; opacity: 0.92; font-size: 0.95rem; }
+  main {
+    max-width: 760px;
+    margin: -24px auto 64px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 32px 28px 40px;
+    box-shadow: 0 8px 30px rgba(168, 85, 247, 0.12);
+  }
+  h2 {
+    font-size: 1.15rem;
+    margin: 36px 0 12px;
+    color: var(--texto);
+    border-left: 4px solid var(--magenta);
+    padding-left: 12px;
+  }
+  section:first-child h2 { margin-top: 0; }
+  p, li { color: var(--suave); }
+  li { margin-bottom: 8px; }
+  strong { color: var(--texto); }
+  a { color: var(--fucsia); }
+  .tabela-rolavel { overflow-x: auto; margin: 16px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.92rem; min-width: 480px; }
+  th, td { border: 1px solid var(--borda); padding: 10px 12px; text-align: left; vertical-align: top; }
+  thead th { background: var(--lilas); color: var(--texto); }
+  tbody th { background: #FAFAFB; color: var(--texto); font-weight: 600; }
+  td { color: var(--suave); }
+  footer {
+    text-align: center;
+    padding: 0 24px 48px;
+    color: var(--suave);
+    font-size: 0.88rem;
+  }
+  @media (max-width: 600px) {
+    main { margin: -16px 12px 48px; padding: 24px 18px 32px; border-radius: 16px; }
+    header { padding: 36px 20px 32px; }
+    header h1 { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Política de Privacidade</h1>
+    <p>Jubí — Ame sua beleza autêntica</p>
+    <p>Atualizada em 26 de agosto de 2026</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>1. Quem somos</h2>
+      <p>O Jubí é um aplicativo de análise capilar com inteligência artificial, feito para mulheres brasileiras que querem entender e cuidar melhor do próprio cabelo. Esta política descreve como tratamos os dados pessoais de quem usa o app, em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018 — LGPD).</p>
+      <p>Controlador dos dados: Merkaba Marketing Ltda, inscrita no CNPJ sob o nº 34.490.609/0001-08, com sede na Rua Barrinha, 19, Belo Horizonte/MG, CEP 31270-070.</p>
+    </section>
+
+    <section>
+      <h2>2. Quais dados coletamos</h2>
+      <p>Coletamos apenas o que é necessário para gerar sua análise capilar, manter sua conta e melhorar o app. Nada é coletado sem um motivo concreto ligado à experiência que você usa.</p>
+      <div class="tabela-rolavel"><table><thead><tr><th></th><th>Quando</th><th>Onde fica</th></tr></thead><tbody><tr><th scope="row">Fotos do cabelo (frente, costas, laterais)</th><td>Na etapa de envio de fotos, antes do cadastro</td><td>Processadas na hora pela IA; não ficam guardadas (veja a seção 3)</td></tr><tr><th scope="row">Respostas do questionário capilar</th><td>Na etapa de questionário</td><td>Conta na Supabase, associada ao seu perfil</td></tr><tr><th scope="row">Nome, e-mail e senha</th><td>No cadastro</td><td>Conta na Supabase (autenticação e perfil)</td></tr><tr><th scope="row">Foto de perfil (avatar), se você adicionar</th><td>Na tela de perfil</td><td>Armazenamento de arquivos da Supabase</td></tr><tr><th scope="row">Resultado do diagnóstico e da rotina geradas</th><td>Após cada análise</td><td>Conta na Supabase</td></tr><tr><th scope="row">Mensagens trocadas com a Jubí (chat)</th><td>Ao usar o chat com a especialista de IA</td><td>Conta na Supabase, associada ao seu perfil</td></tr><tr><th scope="row">Mensagens enviadas pelo Fale Conosco</th><td>Ao entrar em contato com o suporte</td><td>Conta na Supabase; encaminhada por e-mail</td></tr><tr><th scope="row">Identificador anônimo do aparelho e endereço IP</th><td>Sempre, mesmo antes do cadastro</td><td>Usado para liberar a análise gratuita e limitar abuso da IA; não identifica você pelo nome</td></tr><tr><th scope="row">Eventos de uso do app</th><td>Durante a navegação (ex.: concluiu questionário, viu tela de compra)</td><td>Conta na Supabase, para entender como o app é usado</td></tr><tr><th scope="row">Histórico de compras</th><td>Ao comprar algo dentro do app</td><td>Conta na Supabase, via RevenueCat</td></tr></tbody></table></div>
+    </section>
+
+    <section>
+      <h2>3. As fotos do seu cabelo</h2>
+      <p>Como as fotos são o dado mais sensível que você compartilha com a gente, esta seção detalha exatamente o que acontece com elas, passo a passo.</p>
+      <ol><li><strong>No seu aparelho</strong> — as 4 fotos ficam apenas na memória do app. Antes do envio, elas são redimensionadas e comprimidas para reduzir o tamanho do arquivo.</li><li><strong>No envio</strong> — as fotos são transmitidas de forma criptografada para os nossos servidores (Supabase), que as repassam imediatamente para a Anthropic — empresa responsável pelo modelo de inteligência artificial que interpreta a imagem e gera o diagnóstico.</li><li><strong>Depois da análise</strong> — as fotos não são salvas em nenhum banco de dados ou repositório de arquivos do Jubí. Assim que a IA devolve o diagnóstico, apenas o resultado — tipo de cabelo, porosidade, densidade, estado atual, ingredientes recomendados — é gravado na sua conta. A imagem em si é descartada do lado do Jubí.</li><li><strong>Do lado da Anthropic</strong> — pelos termos comerciais da Anthropic para uso via API, o conteúdo enviado não é usado para treinar os modelos de IA. As fotos são apagadas automaticamente dos servidores da Anthropic em até 30 dias.</li><li><strong>Uma exceção importante</strong> — se um envio for sinalizado pelos sistemas automáticos da Anthropic como possível violação da política de uso deles, o conteúdo pode ser retido por até 2 anos, e a pontuação de classificação de segurança correspondente por até 7 anos. Isso vale para qualquer uso da API deles, e não é algo que o Jubí controle.</li></ol>
+      <p>Os prazos acima são definidos pela Anthropic e podem mudar. A versão vigente fica publicada na Central de Privacidade da Anthropic.</p>
+      <p><a href="https://privacy.claude.com/" rel="noopener">Abrir a Central de Privacidade da Anthropic</a></p>
+      <p>Vale uma distinção: se você adicionar uma foto de perfil (avatar) na tela de conta, essa imagem segue outro caminho — ela fica salva no armazenamento de arquivos da Supabase e permanece até você trocá-la, removê-la ou excluir sua conta.</p>
+    </section>
+
+    <section>
+      <h2>4. Para que usamos cada dado</h2>
+      <div class="tabela-rolavel"><table><thead><tr><th></th><th>Base legal</th></tr></thead><tbody><tr><th scope="row">Gerar seu diagnóstico capilar e cronograma de rotina</th><td>Execução de contrato / consentimento</td></tr><tr><th scope="row">Criar e manter sua conta, autenticação e login</th><td>Execução de contrato</td></tr><tr><th scope="row">Processar compras dentro do app</th><td>Execução de contrato</td></tr><tr><th scope="row">Responder ao Fale Conosco</th><td>Execução de contrato / legítimo interesse</td></tr><tr><th scope="row">Impedir uso abusivo da IA (limites por aparelho, IP e conta)</th><td>Legítimo interesse</td></tr><tr><th scope="row">Entender como o app é usado e melhorar o produto</th><td>Legítimo interesse</td></tr><tr><th scope="row">Recomendar produtos compatíveis com seu perfil capilar</th><td>Execução de contrato / consentimento</td></tr></tbody></table></div>
+    </section>
+
+    <section>
+      <h2>5. Com quem compartilhamos</h2>
+      <p>Não vendemos seus dados. Compartilhamos apenas com prestadores de serviço que operam partes específicas do app, sempre limitado ao necessário para cada função:</p>
+      <ul><li><strong>Anthropic</strong> — recebe as fotos do cabelo, as respostas do questionário e as mensagens do chat com a Jubí, para gerar a análise, a rotina e as respostas da especialista de IA.</li><li><strong>Supabase</strong> — infraestrutura de banco de dados, autenticação e armazenamento de arquivos que hospeda todos os dados de conta do Jubí.</li><li><strong>RevenueCat</strong> — processa e registra suas compras dentro do app.</li><li><strong>Resend</strong> — envia por e-mail as mensagens que você escreve no Fale Conosco para nossa equipe de suporte.</li></ul>
+      <p>Também podemos compartilhar dados se exigido por lei, ordem judicial ou autoridade competente.</p>
+    </section>
+
+    <section>
+      <h2>6. Por quanto tempo guardamos</h2>
+      <ul><li><strong>Fotos de análise</strong> — não ficam guardadas do nosso lado. Do lado da Anthropic, são apagadas em até 30 dias, salvo a exceção descrita na seção 3.</li><li><strong>Dados de conta e diagnósticos</strong> — mantidos enquanto sua conta existir. Ao excluir a conta, os dados são apagados ou anonimizados, exceto o que a lei exigir manter.</li><li><strong>Identificador anônimo e registros de uso da IA</strong> — mantidos pelo tempo necessário para a trava anti-abuso funcionar.</li><li><strong>Mensagens de suporte</strong> — mantidas para histórico de atendimento.</li></ul>
+    </section>
+
+    <section>
+      <h2>7. Seus direitos</h2>
+      <p>Como titular dos dados, a LGPD garante que você pode, a qualquer momento:</p>
+      <ul><li>Confirmar se tratamos dados seus, e acessá-los;</li><li>Corrigir dados incompletos, inexatos ou desatualizados;</li><li>Pedir anonimização, bloqueio ou eliminação de dados desnecessários ou tratados fora da lei;</li><li>Solicitar a portabilidade dos seus dados a outro fornecedor;</li><li>Pedir a eliminação dos dados tratados com base no seu consentimento;</li><li>Ser informada sobre com quem compartilhamos seus dados;</li><li>Revogar seu consentimento a qualquer momento;</li><li>Excluir sua conta e os dados associados a ela.</li></ul>
+    </section>
+
+    <section>
+      <h2>8. Como exercer seus direitos</h2>
+      <p>Para qualquer pedido relacionado aos seus dados, fale com a gente pelo Fale Conosco, na tela de perfil, ou pelo e-mail abaixo. Respondemos dentro do prazo previsto pela LGPD.</p>
+      <p><a href="mailto:merkabamktdigital@gmail.com" rel="noopener">merkabamktdigital@gmail.com</a></p>
+    </section>
+
+    <section>
+      <h2>9. Segurança</h2>
+      <p>Seus dados de conta são protegidos por controles de acesso da Supabase, o que significa que, por padrão, cada usuária só consegue ler e alterar os próprios dados. As chaves de acesso à IA nunca ficam no aplicativo — toda chamada à Anthropic acontece no servidor. Nenhum sistema é 100% imune a falhas, mas trabalhamos para manter essas proteções atualizadas.</p>
+    </section>
+
+    <section>
+      <h2>10. Menores de idade</h2>
+      <p>O Jubí é destinado a maiores de 18 anos. Não coletamos intencionalmente dados de menores de idade. Se você é responsável por uma menor de idade e acredita que ela usou o app, entre em contato pelos canais da seção 8 para que possamos avaliar a exclusão dos dados.</p>
+    </section>
+
+    <section>
+      <h2>11. Identificadores no aparelho</h2>
+      <p>O Jubí não usa cookies de rastreamento publicitário. Usamos dois identificadores técnicos, gerados e guardados no próprio aparelho:</p>
+      <ul><li><strong>ID do aparelho</strong> — permite liberar a primeira análise gratuita e impedir uso abusivo da IA antes do cadastro.</li><li><strong>ID anônimo de uso</strong> — liga os eventos do mesmo aparelho antes de você criar conta, para entendermos como o app é usado.</li></ul>
+      <p>Nenhum dos dois identifica você pelo nome sozinho.</p>
+    </section>
+
+    <section>
+      <h2>12. Mudanças nesta política</h2>
+      <p>Podemos atualizar esta política quando o app mudar a forma como trata dados. Alterações relevantes serão comunicadas dentro do app. A data no topo desta tela sempre indica a versão mais recente.</p>
+    </section>
+  </main>
+
+  <footer>
+    Dúvidas sobre esta política? Escreva para
+    <a href="mailto:merkabamktdigital@gmail.com">merkabamktdigital@gmail.com</a>.
+  </footer>
+</body>
+</html>
