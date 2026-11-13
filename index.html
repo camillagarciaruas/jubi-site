@@ -3,158 +3,666 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Política de Privacidade — Jubí</title>
-<meta name="description" content="Como o aplicativo Jubí trata os dados pessoais de quem usa o app, conforme a LGPD.">
+<title>Jubí — Análise capilar com IA para o seu cabelo de verdade</title>
+<meta name="description" content="Responda 5 perguntas, mande 4 fotos e o Jubí lê o seu cabelo: tipo, porosidade, densidade, ingredientes certos, rotina e produtos. Análise e rotina grátis.">
+<meta name="theme-color" content="#F5F3FF">
+<meta property="og:title" content="Jubí — Ame sua beleza autêntica">
+<meta property="og:description" content="O app que lê o seu cabelo com IA e diz do que ele precisa. Análise e rotina grátis.">
+<meta property="og:image" content="assets/jubi-icone.png">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/jubi-icone.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@600..800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!--
+  LINKS DAS LOJAS
+  Quando o app estiver publicado, troque os links provisórios:
+  - procure por  #LINK-GOOGLE-PLAY  e cole o link do Google Play no lugar
+  - procure por  #LINK-APP-STORE    e cole o link da App Store no lugar
+  Cada um aparece duas vezes (no topo e no fim da página).
+-->
 <style>
   :root {
+    --fundo: #F5F3FF;
+    --papel: #FFFFFF;
+    --fundo-2: #EEE7FB;
+    --tinta: #241433;
+    --tinta-2: #5B4B6E;
+    --linha: #E4DAF5;
+    --lilas-forte: #F3E8FF;
     --magenta: #A855F7;
     --fucsia: #C026D3;
-    --lilas: #F5F3FF;
-    --texto: #374151;
-    --suave: #6B7280;
-    --borda: #E5E7EB;
+    --fucsia-escuro: #A21CAF;
+    --menta: #34D399;
+    --menta-tinta: #047857;
+    --menta-fundo: #ECFDF5;
+    --coral: #FB7185;
+    --coral-tinta: #BE123C;
+    --coral-fundo: #FFF1F2;
+    --azul: #60A5FA;
+    --azul-fundo: #EFF6FF;
+    --gradiente: linear-gradient(135deg, #A855F7, #C026D3);
+    --display: "Rubik", "Avenir Next Rounded", system-ui, sans-serif;
+    --texto: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --sombra: 0 24px 48px -16px rgba(80, 20, 110, 0.28), 0 4px 12px -4px rgba(80, 20, 110, 0.12);
+    --sombra-leve: 0 10px 24px -10px rgba(80, 20, 110, 0.25);
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --margem: clamp(16px, 5vw, 64px);
+    color-scheme: light;
   }
+
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scrollbar-color: var(--magenta) var(--fundo); }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body {
     margin: 0;
-    background: var(--lilas);
-    color: var(--texto);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.65;
+    background: var(--fundo);
+    color: var(--tinta);
+    font-family: var(--texto);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
   }
-  header {
-    background: linear-gradient(135deg, var(--magenta), var(--fucsia));
-    color: #fff;
-    padding: 48px 24px 40px;
-    text-align: center;
+  ::selection { background: var(--fucsia); color: #fff; }
+  img { display: block; max-width: 100%; }
+  a { color: var(--fucsia-escuro); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 3px solid var(--fucsia); outline-offset: 3px; border-radius: 10px; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.05; letter-spacing: -0.025em; margin: 0; text-wrap: balance; }
+  p { margin: 0; text-wrap: pretty; }
+
+  .pular {
+    position: absolute; left: 16px; top: -60px; z-index: 10;
+    background: var(--tinta); color: #fff; padding: 10px 16px; border-radius: 10px; text-decoration: none;
   }
-  header h1 { margin: 0 0 8px; font-size: 1.9rem; letter-spacing: -0.5px; }
-  /* Precisa da cor explícita: a regra p geral abaixo vence a cor herdada do header. */
-  header p { margin: 0; color: #fff; opacity: 0.92; font-size: 0.95rem; }
-  main {
-    max-width: 760px;
-    margin: -24px auto 64px;
-    background: #fff;
-    border-radius: 20px;
-    padding: 32px 28px 40px;
-    box-shadow: 0 8px 30px rgba(168, 85, 247, 0.12);
+  .pular:focus { top: 16px; }
+
+  /* ---------- Topo ---------- */
+  .topo {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 20px var(--margem);
+    max-width: 1360px; margin: 0 auto;
   }
-  h2 {
-    font-size: 1.15rem;
-    margin: 36px 0 12px;
-    color: var(--texto);
-    border-left: 4px solid var(--magenta);
-    padding-left: 12px;
+  .marca { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--tinta); }
+  .marca img { width: 40px; height: 40px; border-radius: 12px; }
+  .marca span { font-family: var(--display); font-weight: 800; font-size: 1.6rem; letter-spacing: -0.03em; }
+  .topo nav { display: flex; align-items: center; gap: clamp(12px, 3vw, 32px); }
+  .topo nav a.link { color: var(--tinta); text-decoration: none; font-weight: 600; }
+  .topo nav a.link:hover { color: var(--fucsia-escuro); }
+  .botao-topo {
+    display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px;
+    background: var(--tinta); color: #fff; border-radius: 999px; text-decoration: none; font-weight: 600;
+    transition: background 0.3s var(--ease), transform 0.3s var(--ease);
   }
-  section:first-child h2 { margin-top: 0; }
-  p, li { color: var(--suave); }
-  li { margin-bottom: 8px; }
-  strong { color: var(--texto); }
-  a { color: var(--fucsia); }
-  .tabela-rolavel { overflow-x: auto; margin: 16px 0; }
-  table { border-collapse: collapse; width: 100%; font-size: 0.92rem; min-width: 480px; }
-  th, td { border: 1px solid var(--borda); padding: 10px 12px; text-align: left; vertical-align: top; }
-  thead th { background: var(--lilas); color: var(--texto); }
-  tbody th { background: #FAFAFB; color: var(--texto); font-weight: 600; }
-  td { color: var(--suave); }
-  footer {
-    text-align: center;
-    padding: 0 24px 48px;
-    color: var(--suave);
-    font-size: 0.88rem;
+  .botao-topo:hover { background: var(--fucsia-escuro); transform: translateY(-1px); }
+
+  /* ---------- Botões das lojas ---------- */
+  .lojas { display: flex; flex-wrap: wrap; gap: 12px; }
+  .loja {
+    display: inline-flex; align-items: center; gap: 12px;
+    min-height: 60px; padding: 10px 22px 10px 18px;
+    background: var(--tinta); color: #fff; border-radius: 16px; text-decoration: none;
+    box-shadow: var(--sombra-leve);
+    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.35s var(--ease);
   }
-  @media (max-width: 600px) {
-    main { margin: -16px 12px 48px; padding: 24px 18px 32px; border-radius: 16px; }
-    header { padding: 36px 20px 32px; }
-    header h1 { font-size: 1.5rem; }
+  .loja:hover { transform: translateY(-2px); box-shadow: 0 16px 32px -12px rgba(80, 20, 110, 0.45); background: #2F1A44; }
+  .loja svg { width: 26px; height: 26px; flex: none; fill: currentColor; }
+  .loja small { display: block; font-size: 0.75rem; line-height: 1.3; opacity: 0.85; letter-spacing: 0.01em; }
+  .loja strong { display: block; font-size: 1.15rem; line-height: 1.3; font-weight: 700; }
+  .loja.clara { background: #fff; color: var(--tinta); }
+  .loja.clara:hover { background: #fff; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    max-width: 1360px; margin: 0 auto;
+    padding: clamp(24px, 5vw, 56px) var(--margem) clamp(64px, 9vw, 120px);
+    display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: clamp(32px, 5vw, 72px); align-items: center;
+  }
+  .hero h1 { font-size: clamp(2.75rem, 5.6vw, 5rem); max-width: 12.5ch; }
+  .hero h1 em { font-style: normal; color: var(--fucsia-escuro); }
+  .hero .lead { margin-top: 28px; font-size: clamp(1.1rem, 1.5vw, 1.3rem); color: var(--tinta-2); max-width: 34em; }
+  .hero .lojas { margin-top: 36px; }
+  .gratis { margin-top: 18px; display: flex; align-items: center; gap: 10px; color: var(--tinta-2); font-weight: 500; }
+  .gratis svg { width: 20px; height: 20px; flex: none; color: var(--menta-tinta); }
+
+  .vitrine { position: relative; height: clamp(520px, 52vw, 660px); }
+  .vitrine .foto {
+    position: absolute; right: 0; top: 0; width: 76%; height: 90%;
+    object-fit: cover; object-position: 60% 0%; border-radius: 40px;
+    box-shadow: var(--sombra);
+  }
+  .vitrine .fone { position: absolute; left: 0; bottom: 0; font-size: clamp(8.5px, 0.78vw, 10.5px); }
+  .selo {
+    position: absolute; display: flex; align-items: center; gap: 10px;
+    background: #fff; border-radius: 999px; padding: 10px 18px 10px 12px;
+    box-shadow: var(--sombra-leve); font-size: 0.95rem; line-height: 1.3; white-space: nowrap;
+  }
+  .selo b { display: block; font-weight: 700; color: var(--tinta); }
+  .selo span { display: block; font-size: 0.8rem; color: var(--tinta-2); }
+  .selo i { width: 28px; height: 28px; border-radius: 50%; flex: none; display: grid; place-items: center; }
+  .selo i svg { width: 16px; height: 16px; }
+  .selo.bom { right: -4%; top: 50%; }
+  .selo.bom i { background: var(--menta-fundo); color: var(--menta-tinta); }
+  .selo.evite { right: 0; top: 66%; }
+  .selo.evite i { background: var(--coral-fundo); color: var(--coral-tinta); }
+  .selo.poro { right: 4%; top: 6%; }
+  .selo.poro i { background: var(--lilas-forte); color: var(--fucsia-escuro); }
+  .legenda { position: absolute; right: 0; bottom: 0; max-width: 34%; text-align: right; font-size: 0.82rem; line-height: 1.4; color: var(--tinta-2); }
+
+  /* Entrada da vitrine: um único momento coreografado */
+  @media (prefers-reduced-motion: no-preference) {
+    .vitrine .foto { animation: surgir 1.1s var(--ease) both; }
+    .vitrine .fone { animation: subir 1.1s 0.15s var(--ease) both; }
+    .vitrine .selo { animation: brotar 0.9s var(--ease) both; }
+    .vitrine .selo.poro { animation-delay: 0.55s; }
+    .vitrine .selo.bom { animation-delay: 0.7s; }
+    .vitrine .selo.evite { animation-delay: 0.85s; }
+  }
+  @keyframes surgir { from { transform: scale(0.96); filter: blur(6px); } }
+  @keyframes subir { from { transform: translateY(40px) rotate(-2deg); filter: blur(4px); } }
+  @keyframes brotar { from { transform: translateY(10px) scale(0.85); filter: blur(4px); opacity: 0.2; } }
+
+  /* ---------- Celular (componente) ---------- */
+  .fone {
+    width: 28em; padding: 0.9em; border-radius: 4.6em;
+    background: #1B1024; box-shadow: var(--sombra), inset 0 0 0 0.2em #3A2A4A;
+  }
+  .tela {
+    position: relative; height: 58em; border-radius: 3.7em; overflow: hidden;
+    background: var(--fundo); color: #374151; font-family: var(--texto); line-height: 1.4;
+  }
+  .tela::after {
+    content: ""; position: absolute; inset: auto 0 0 0; height: 5em;
+    background: linear-gradient(to bottom, rgba(245, 243, 255, 0), var(--fundo));
+    pointer-events: none;
+  }
+  .status { display: flex; justify-content: space-between; align-items: center; padding: 1.5em 2.4em 0.8em; font-size: 1.25em; font-weight: 700; color: #111; }
+  .status svg { height: 1em; width: auto; }
+  .ilha { position: absolute; top: 1.1em; left: 50%; transform: translateX(-50%); width: 8.5em; height: 2.4em; border-radius: 2em; background: #1B1024; }
+  .conteudo { padding: 0.8em 1.6em 2em; display: grid; gap: 1.2em; }
+  .tela .t4 { margin: 0; font-family: var(--texto); font-size: 1.5em; font-weight: 700; color: #374151; letter-spacing: 0; line-height: 1.3; }
+  .tela p { font-size: 1.2em; color: #4B5563; line-height: 1.45; }
+
+  .cab-grad { background: var(--gradiente); border-radius: 2em; padding: 2em 1.8em; color: #fff; text-align: center; display: grid; justify-items: center; gap: 0.8em; }
+  .cab-grad .icone { width: 4.6em; height: 4.6em; border-radius: 50%; background: rgba(255, 255, 255, 0.2); display: grid; place-items: center; }
+  .cab-grad .icone svg { width: 2.4em; height: 2.4em; fill: #fff; }
+  .cab-grad strong { font-size: 1.7em; line-height: 1.3; }
+  .cab-grad span { font-size: 1.2em; opacity: 0.9; }
+  .metricas { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
+  .metrica { border-radius: 1.3em; padding: 1.3em 0.8em; text-align: center; background: var(--lilas-forte); }
+  .metrica small { display: block; font-size: 1.1em; color: #4B5563; }
+  .metrica b { display: block; font-size: 1.9em; color: #7E22CE; }
+  .metrica.alerta { background: var(--coral-fundo); }
+  .metrica.alerta b { color: var(--coral-tinta); }
+  .cartao { background: #fff; border-radius: 1.5em; padding: 1.4em; display: grid; gap: 0.7em; box-shadow: 0 0.2em 0.8em -0.2em rgba(0, 0, 0, 0.08); }
+  .ingrediente { display: flex; align-items: center; gap: 0.8em; font-size: 1.35em; font-weight: 700; color: #374151; }
+  .ingrediente::before { content: ""; width: 0.7em; height: 0.7em; border-radius: 50%; background: var(--menta); flex: none; }
+  .ingrediente.ruim { color: var(--coral-tinta); }
+  .ingrediente.ruim::before { background: var(--coral); }
+  .destaque-bom { background: #F0FDF4; color: #15803D; border-radius: 0.9em; padding: 0.9em 1em; font-size: 1.15em; }
+
+  .exemplo { position: absolute; top: 1.35em; right: 1.8em; z-index: 2; background: var(--tinta); color: #fff; font-size: 1.1em; font-weight: 700; border-radius: 1em; padding: 0.25em 0.8em; }
+  .tem-exemplo .status { justify-content: flex-start; }
+  /* Questionário */
+  .progresso { display: grid; gap: 0.7em; }
+  .progresso small { font-size: 1.15em; color: #4B5563; font-weight: 600; }
+  .progresso .barra { height: 0.7em; border-radius: 1em; background: #E9E3F5; overflow: hidden; }
+  .progresso .barra i { display: block; height: 100%; width: 20%; background: var(--gradiente); border-radius: 1em; }
+  .pergunta { font-size: 2.1em !important; color: #374151 !important; line-height: 1.3 !important; }
+  .opcoes { display: grid; gap: 0.8em; }
+  .opcao { display: flex; align-items: center; justify-content: space-between; background: #fff; border: 0.15em solid #E9E3F5; border-radius: 1.4em; padding: 1.25em 1.5em; font-size: 1.35em; font-weight: 600; color: #374151; }
+  .opcao.marcada { border-color: var(--magenta); background: var(--lilas-forte); color: #7E22CE; }
+  .opcao .check { width: 1.4em; height: 1.4em; border-radius: 50%; background: var(--magenta); display: grid; place-items: center; }
+  .opcao .check svg { width: 0.9em; height: 0.9em; fill: #fff; }
+  .botao-app { background: var(--gradiente); color: #fff; text-align: center; font-weight: 700; font-size: 1.8em; border-radius: 1em; padding: 0.8em; }
+
+  /* Fotos */
+  .grade-fotos { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
+  .slot { aspect-ratio: 3 / 4; border-radius: 1.5em; border: 0.2em dashed #D8CCF0; background: #fff; display: grid; place-items: center; align-content: center; gap: 0.6em; color: var(--magenta); position: relative; overflow: hidden; }
+  .slot svg { width: 2.6em; height: 2.6em; fill: currentColor; }
+  .slot span { font-size: 1.2em; font-weight: 600; color: #4B5563; }
+  .slot.cheio { border: 0; }
+  .slot.cheio img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .slot.cheio span { position: absolute; left: 0.7em; bottom: 0.7em; background: rgba(0, 0, 0, 0.55); color: #fff; border-radius: 0.8em; padding: 0.2em 0.7em; }
+  .slot.cheio .ok { position: absolute; top: 0.7em; right: 0.7em; width: 2em; height: 2em; border-radius: 50%; background: var(--menta); display: grid; place-items: center; }
+  .slot.cheio .ok svg { width: 1.2em; height: 1.2em; fill: #fff; }
+
+  /* Rotina */
+  .numeros { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6em; }
+  .numero { border-radius: 1.2em; padding: 1em 0.3em; text-align: center; }
+  .numero b { display: block; font-size: 2em; line-height: 1.3; }
+  .numero small { display: block; font-size: 0.95em; }
+  .n-lav { background: var(--lilas-forte); color: #7E22CE; }
+  .n-hid { background: var(--azul-fundo); color: #1D4ED8; }
+  .n-nut { background: var(--menta-fundo); color: #047857; }
+  .n-rec { background: var(--lilas-forte); color: #7E22CE; }
+  .dia { display: flex; align-items: center; gap: 1em; background: #fff; border-radius: 1.3em; padding: 1em 1.2em; }
+  .dia > b { width: 3em; font-size: 1.2em; color: #374151; }
+  .etiqueta { border-radius: 1em; padding: 0.35em 0.9em; font-size: 1.15em; font-weight: 700; }
+  .e-hid { background: var(--azul-fundo); color: #1D4ED8; }
+  .e-nut { background: var(--menta-fundo); color: #047857; }
+  .e-rec { background: var(--lilas-forte); color: #7E22CE; }
+  .e-lav { background: #F3F4F6; color: #4B5563; }
+
+  /* Produtos */
+  .abas { display: flex; gap: 0.5em; overflow: hidden; }
+  .aba { border-radius: 2em; padding: 0.55em 0.9em; font-size: 1.1em; white-space: nowrap; font-weight: 600; background: #fff; color: #4B5563; }
+  .aba.ativa { background: #7E22CE; color: #fff; }
+  .produto { display: grid; grid-template-columns: 4.6em 1fr; gap: 1em; align-items: center; background: #fff; border-radius: 1.5em; padding: 1.1em; }
+  .pote { width: 4.6em; height: 4.6em; border-radius: 1.2em; display: grid; place-items: center; }
+  .pote svg { width: 2.6em; height: 2.6em; }
+  .produto b { display: block; font-size: 1.25em; color: #374151; line-height: 1.3; }
+  .produto .faixa { display: inline-block; margin-top: 0.4em; font-size: 1em; font-weight: 700; border-radius: 1em; padding: 0.2em 0.7em; }
+
+  /* ---------- Como funciona ---------- */
+  .como {
+    background: var(--fundo-2);
+    border-radius: clamp(32px, 5vw, 64px) clamp(32px, 5vw, 64px) 0 0;
+    padding: clamp(72px, 10vw, 136px) var(--margem) clamp(56px, 8vw, 104px);
+  }
+  .como-interno { max-width: 1240px; margin: 0 auto; }
+  .como h2 { font-size: clamp(2.3rem, 5vw, 4.25rem); max-width: 14ch; }
+  .como .intro { margin-top: 20px; color: var(--tinta-2); font-size: 1.15rem; max-width: 36em; }
+  .palco { margin-top: clamp(48px, 7vw, 88px); display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .passos { list-style: none; margin: 0; padding: 0; position: relative; }
+  .passo { display: grid; gap: 28px; padding: 0 0 72px; }
+  .passo:last-child { padding-bottom: 0; }
+  .passo-texto { position: relative; padding-left: 64px; max-width: 34em; }
+  .passo-texto .num {
+    position: absolute; left: 0; top: 2px;
+    width: 44px; height: 44px; border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: var(--display); font-weight: 800; font-size: 1.2rem;
+    background: #fff; color: var(--fucsia-escuro); box-shadow: 0 2px 6px -2px rgba(80, 20, 110, 0.25);
+    transition: background 0.5s var(--ease), color 0.5s var(--ease), transform 0.5s var(--ease);
+  }
+  .passo h3 { font-size: clamp(1.7rem, 3vw, 2.4rem); }
+  .passo-texto p { margin-top: 12px; color: var(--tinta-2); font-size: 1.1rem; }
+  .passo-texto p.nota { margin-top: 14px; font-size: 0.95rem; display: flex; gap: 10px; align-items: flex-start; }
+  .passo-texto p.nota svg { width: 18px; height: 18px; flex: none; margin-top: 3px; color: var(--fucsia-escuro); }
+  .passo-fone { justify-self: center; font-size: clamp(8px, 2.3vw, 10px); }
+
+  /* Desktop: celular fixo que troca de tela conforme o passo */
+  .fone-fixo { display: none; }
+  @media (min-width: 960px) {
+    .js .palco { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(48px, 7vw, 120px); }
+    .js .fone-fixo { display: block; position: sticky; top: max(24px, calc(50vh - 310px)); align-self: start; justify-self: center; font-size: 10.5px; }
+    .js .fone-fixo .tela > .camada {
+      position: absolute; inset: 0; opacity: 0; transform: translateY(2em) scale(0.98); filter: blur(6px);
+      transition: opacity 0.6s var(--ease), transform 0.8s var(--ease), filter 0.6s var(--ease);
+    }
+    .js .fone-fixo .tela > .camada.ativa { opacity: 1; transform: none; filter: none; }
+    .js .passo-fone { display: none; }
+    .js .passo { min-height: min(56vh, 520px); align-content: center; padding: 0; }
+    .js .passo .num { background: #fff; color: var(--fucsia-escuro); }
+    .js .passo.ativo .num { background: var(--fucsia); color: #fff; transform: scale(1.08); }
+    .js .passo h3, .js .passo-texto p { transition: color 0.5s var(--ease); }
+    .js .passo:not(.ativo) h3 { color: #6B5C80; }
+    .js .passo:not(.ativo) .passo-texto p { color: var(--tinta-2); }
+    .js .passos::before {
+      content: ""; position: absolute; left: 21px; top: min(28vh, 260px); bottom: min(28vh, 260px); width: 2px; background: var(--linha);
+    }
+    .js .passo-texto .num { z-index: 1; box-shadow: 0 0 0 6px var(--fundo-2); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .js .fone-fixo .tela > .camada { transition: none; transform: none; filter: none; }
+  }
+
+  /* ---------- Fecho ---------- */
+  .fecho { background: var(--fundo-2); padding: 0 var(--margem) clamp(56px, 8vw, 96px); }
+  .chamada {
+    max-width: 1240px; margin: 0 auto;
+    background: var(--fucsia); color: #fff;
+    border-radius: clamp(28px, 4vw, 48px);
+    padding: clamp(40px, 7vw, 96px) clamp(24px, 6vw, 88px);
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 40px; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .chamada h2 { font-size: clamp(2.4rem, 5.6vw, 4.9rem); max-width: 12ch; }
+  .chamada p { margin-top: 18px; font-size: 1.2rem; max-width: 30em; color: #fff; }
+  .chamada .lojas { margin-top: 32px; }
+  .chamada .icone-app { width: clamp(120px, 16vw, 200px); height: auto; border-radius: 28%; box-shadow: 0 30px 60px -20px rgba(60, 0, 80, 0.55); transform: rotate(8deg); }
+  .chamada .loja { box-shadow: 0 12px 28px -12px rgba(60, 0, 80, 0.6); }
+
+  footer { background: var(--fundo-2); padding: 0 var(--margem) 40px; }
+  .rodape { max-width: 1240px; margin: 0 auto; padding-top: 28px; border-top: 1px solid #D9CCF2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; color: var(--tinta-2); font-size: 0.92rem; }
+
+  /* ---------- Celular e tablet ---------- */
+  @media (max-width: 959px) {
+    .hero { grid-template-columns: minmax(0, 1fr); }
+    .hero h1 { max-width: 12ch; }
+    .vitrine { height: clamp(460px, 110vw, 620px); max-width: 560px; width: 100%; justify-self: center; }
+    .vitrine .fone { font-size: clamp(7px, 2.05vw, 10px); }
+    .selo.poro { right: 2%; left: auto; top: 3%; }
+    .selo.bom { right: 0; top: 46%; }
+    .selo.evite { right: 2%; top: 63%; }
+    .chamada { grid-template-columns: minmax(0, 1fr); }
+    .chamada .icone-app { display: none; }
+  }
+  @media (max-width: 560px) {
+    .topo nav a.link { display: none; }
+    .hero { padding-top: 8px; }
+    .hero h1 { font-size: 2.6rem; }
+    .hero .lead { margin-top: 16px; font-size: 1.05rem; }
+    .hero .lojas { margin-top: 22px; }
+    .lojas { flex-wrap: nowrap; gap: 8px; }
+    .loja { flex: 1 1 0; justify-content: center; min-height: 54px; padding: 8px 10px; gap: 8px; }
+    .loja svg { width: 22px; height: 22px; }
+    .loja strong { font-size: 1rem; }
+    .gratis { margin-top: 12px; font-size: 0.95rem; }
+    .selo { font-size: 0.85rem; padding: 8px 14px 8px 10px; }
+    .selo span { font-size: 0.72rem; }
+    .selo i { width: 24px; height: 24px; }
+    .passo-texto { padding-left: 56px; }
+    .legenda { bottom: -32px; max-width: 100%; }
+    .vitrine { margin-bottom: 32px; }
   }
 </style>
 </head>
 <body>
-  <header>
-    <h1>Política de Privacidade</h1>
-    <p>Jubí — Ame sua beleza autêntica</p>
-    <p>Atualizada em 26 de agosto de 2026</p>
-  </header>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
-  <main>
-    <section>
-      <h2>1. Quem somos</h2>
-      <p>O Jubí é um aplicativo de análise capilar com inteligência artificial, feito para mulheres brasileiras que querem entender e cuidar melhor do próprio cabelo. Esta política descreve como tratamos os dados pessoais de quem usa o app, em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018 — LGPD).</p>
-      <p>Controlador dos dados: Merkaba Marketing Ltda, inscrita no CNPJ sob o nº 34.490.609/0001-08, com sede na Rua Barrinha, 19, Belo Horizonte/MG, CEP 31270-070.</p>
-    </section>
+<header class="topo">
+  <a class="marca" href="#" aria-label="Jubí, início">
+    <img src="assets/jubi-icone.png" alt="" width="40" height="40">
+    <span>Jubí</span>
+  </a>
+  <nav aria-label="Principal">
+    <a class="link" href="#como-funciona">Como funciona</a>
+    <a class="botao-topo" href="#baixar">Baixar o app</a>
+  </nav>
+</header>
 
-    <section>
-      <h2>2. Quais dados coletamos</h2>
-      <p>Coletamos apenas o que é necessário para gerar sua análise capilar, manter sua conta e melhorar o app. Nada é coletado sem um motivo concreto ligado à experiência que você usa.</p>
-      <div class="tabela-rolavel"><table><thead><tr><th></th><th>Quando</th><th>Onde fica</th></tr></thead><tbody><tr><th scope="row">Fotos do cabelo (frente, costas, laterais)</th><td>Na etapa de envio de fotos, antes do cadastro</td><td>Processadas na hora pela IA; não ficam guardadas (veja a seção 3)</td></tr><tr><th scope="row">Respostas do questionário capilar</th><td>Na etapa de questionário</td><td>Conta na Supabase, associada ao seu perfil</td></tr><tr><th scope="row">Nome, e-mail e senha</th><td>No cadastro</td><td>Conta na Supabase (autenticação e perfil)</td></tr><tr><th scope="row">Foto de perfil (avatar), se você adicionar</th><td>Na tela de perfil</td><td>Armazenamento de arquivos da Supabase</td></tr><tr><th scope="row">Resultado do diagnóstico e da rotina geradas</th><td>Após cada análise</td><td>Conta na Supabase</td></tr><tr><th scope="row">Mensagens trocadas com a Jubí (chat)</th><td>Ao usar o chat com a especialista de IA</td><td>Conta na Supabase, associada ao seu perfil</td></tr><tr><th scope="row">Mensagens enviadas pelo Fale Conosco</th><td>Ao entrar em contato com o suporte</td><td>Conta na Supabase; encaminhada por e-mail</td></tr><tr><th scope="row">Identificador anônimo do aparelho e endereço IP</th><td>Sempre, mesmo antes do cadastro</td><td>Usado para liberar a análise gratuita e limitar abuso da IA; não identifica você pelo nome</td></tr><tr><th scope="row">Eventos de uso do app</th><td>Durante a navegação (ex.: concluiu questionário, viu tela de compra)</td><td>Conta na Supabase, para entender como o app é usado</td></tr><tr><th scope="row">Histórico de compras</th><td>Ao comprar algo dentro do app</td><td>Conta na Supabase, via RevenueCat</td></tr></tbody></table></div>
-    </section>
+<main id="conteudo">
+  <section class="hero" aria-labelledby="titulo">
+    <div>
+      <h1 id="titulo">Chega de comprar produto <em>errado</em> pro seu cabelo.</h1>
+      <p class="lead">A IA do Jubí lê o seu cabelo e diz do que ele precisa: porosidade, densidade, ingredientes certos, rotina e produtos.</p>
+      <div class="lojas">
+        <a class="loja" href="#LINK-GOOGLE-PLAY">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>
+          <span><small>Disponível no</small><strong>Google Play</strong></span>
+        </a>
+        <a class="loja" href="#LINK-APP-STORE">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          <span><small>Baixar na</small><strong>App Store</strong></span>
+        </a>
+      </div>
+      <p class="gratis">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.2-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>
+        Análise e rotina grátis. Você vê o resultado antes de criar conta.
+      </p>
+    </div>
 
-    <section>
-      <h2>3. As fotos do seu cabelo</h2>
-      <p>Como as fotos são o dado mais sensível que você compartilha com a gente, esta seção detalha exatamente o que acontece com elas, passo a passo.</p>
-      <ol><li><strong>No seu aparelho</strong> — as 4 fotos ficam apenas na memória do app. Antes do envio, elas são redimensionadas e comprimidas para reduzir o tamanho do arquivo.</li><li><strong>No envio</strong> — as fotos são transmitidas de forma criptografada para os nossos servidores (Supabase), que as repassam imediatamente para a Anthropic — empresa responsável pelo modelo de inteligência artificial que interpreta a imagem e gera o diagnóstico.</li><li><strong>Depois da análise</strong> — as fotos não são salvas em nenhum banco de dados ou repositório de arquivos do Jubí. Assim que a IA devolve o diagnóstico, apenas o resultado — tipo de cabelo, porosidade, densidade, estado atual, ingredientes recomendados — é gravado na sua conta. A imagem em si é descartada do lado do Jubí.</li><li><strong>Do lado da Anthropic</strong> — pelos termos comerciais da Anthropic para uso via API, o conteúdo enviado não é usado para treinar os modelos de IA. As fotos são apagadas automaticamente dos servidores da Anthropic em até 30 dias.</li><li><strong>Uma exceção importante</strong> — se um envio for sinalizado pelos sistemas automáticos da Anthropic como possível violação da política de uso deles, o conteúdo pode ser retido por até 2 anos, e a pontuação de classificação de segurança correspondente por até 7 anos. Isso vale para qualquer uso da API deles, e não é algo que o Jubí controle.</li></ol>
-      <p>Os prazos acima são definidos pela Anthropic e podem mudar. A versão vigente fica publicada na Central de Privacidade da Anthropic.</p>
-      <p><a href="https://privacy.claude.com/" rel="noopener">Abrir a Central de Privacidade da Anthropic</a></p>
-      <p>Vale uma distinção: se você adicionar uma foto de perfil (avatar) na tela de conta, essa imagem segue outro caminho — ela fica salva no armazenamento de arquivos da Supabase e permanece até você trocá-la, removê-la ou excluir sua conta.</p>
-    </section>
+    <figure class="vitrine" aria-label="Exemplo de resultado do app Jubí">
+      <img class="foto" src="assets/cachos-2.jpg" alt="Mulher de cabelo cacheado volumoso, de perfil, sorrindo na rua" width="576" height="576" fetchpriority="high">
 
-    <section>
-      <h2>4. Para que usamos cada dado</h2>
-      <div class="tabela-rolavel"><table><thead><tr><th></th><th>Base legal</th></tr></thead><tbody><tr><th scope="row">Gerar seu diagnóstico capilar e cronograma de rotina</th><td>Execução de contrato / consentimento</td></tr><tr><th scope="row">Criar e manter sua conta, autenticação e login</th><td>Execução de contrato</td></tr><tr><th scope="row">Processar compras dentro do app</th><td>Execução de contrato</td></tr><tr><th scope="row">Responder ao Fale Conosco</th><td>Execução de contrato / legítimo interesse</td></tr><tr><th scope="row">Impedir uso abusivo da IA (limites por aparelho, IP e conta)</th><td>Legítimo interesse</td></tr><tr><th scope="row">Entender como o app é usado e melhorar o produto</th><td>Legítimo interesse</td></tr><tr><th scope="row">Recomendar produtos compatíveis com seu perfil capilar</th><td>Execução de contrato / consentimento</td></tr></tbody></table></div>
-    </section>
+      <div class="fone" aria-hidden="true">
+        <div class="tela">
+          <div class="ilha"></div>
+          <div class="status"><span>9:41</span><svg viewBox="0 0 40 12"><rect x="0" y="6" width="3" height="6" rx="1"/><rect x="5" y="4" width="3" height="8" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><rect x="23" y="1" width="15" height="10" rx="3" fill="none" stroke="#111" stroke-width="1.2"/><rect x="25" y="3" width="10" height="6" rx="1.5"/></svg></div>
+          <div class="conteudo">
+            <div class="t4 pergunta">Sua análise</div>
+            <div class="metricas">
+              <div class="metrica"><small>Tipo</small><b>Cacheado</b></div>
+              <div class="metrica"><small>Porosidade</small><b>Alta</b></div>
+              <div class="metrica"><small>Densidade</small><b>Média</b></div>
+              <div class="metrica alerta"><small>Estado atual</small><b>Ressecado</b></div>
+            </div>
+            <div class="t4">Ingredientes que funcionam para você</div>
+            <div class="cartao">
+              <div class="ingrediente">Manteiga de karité</div>
+              <div class="destaque-bom">Para você: fio de porosidade alta perde água rápido.</div>
+            </div>
+            <div class="t4">Ingredientes a evitar</div>
+            <div class="cartao">
+              <div class="ingrediente ruim">Sulfato (SLS)</div>
+              <p>Limpa demais e tira a oleosidade natural do fio.</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <section>
-      <h2>5. Com quem compartilhamos</h2>
-      <p>Não vendemos seus dados. Compartilhamos apenas com prestadores de serviço que operam partes específicas do app, sempre limitado ao necessário para cada função:</p>
-      <ul><li><strong>Anthropic</strong> — recebe as fotos do cabelo, as respostas do questionário e as mensagens do chat com a Jubí, para gerar a análise, a rotina e as respostas da especialista de IA.</li><li><strong>Supabase</strong> — infraestrutura de banco de dados, autenticação e armazenamento de arquivos que hospeda todos os dados de conta do Jubí.</li><li><strong>RevenueCat</strong> — processa e registra suas compras dentro do app.</li><li><strong>Resend</strong> — envia por e-mail as mensagens que você escreve no Fale Conosco para nossa equipe de suporte.</li></ul>
-      <p>Também podemos compartilhar dados se exigido por lei, ordem judicial ou autoridade competente.</p>
-    </section>
+      <div class="selo poro" aria-hidden="true">
+        <i><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2c-3 4.5-6 8-6 11.5a6 6 0 0 0 12 0C18 10 15 6.5 12 2z"/></svg></i>
+        <div><b>Porosidade alta</b><span>estimada pelas fotos</span></div>
+      </div>
+      <div class="selo bom" aria-hidden="true">
+        <i><svg viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.3 12l-1.4 1.4 5.6 5.6 11-11-1.4-1.4z"/></svg></i>
+        <div><b>Manteiga de karité</b><span>funciona pra você</span></div>
+      </div>
+      <div class="selo evite" aria-hidden="true">
+        <i><svg viewBox="0 0 24 24"><path fill="currentColor" d="M18.3 7.1 16.9 5.7 12 10.6 7.1 5.7 5.7 7.1l4.9 4.9-4.9 4.9 1.4 1.4 4.9-4.9 4.9 4.9 1.4-1.4-4.9-4.9z"/></svg></i>
+        <div><b>Sulfato (SLS)</b><span>melhor evitar</span></div>
+      </div>
+      <figcaption class="legenda">Exemplo de resultado. O seu depende do seu cabelo.</figcaption>
+    </figure>
+  </section>
 
-    <section>
-      <h2>6. Por quanto tempo guardamos</h2>
-      <ul><li><strong>Fotos de análise</strong> — não ficam guardadas do nosso lado. Do lado da Anthropic, são apagadas em até 30 dias, salvo a exceção descrita na seção 3.</li><li><strong>Dados de conta e diagnósticos</strong> — mantidos enquanto sua conta existir. Ao excluir a conta, os dados são apagados ou anonimizados, exceto o que a lei exigir manter.</li><li><strong>Identificador anônimo e registros de uso da IA</strong> — mantidos pelo tempo necessário para a trava anti-abuso funcionar.</li><li><strong>Mensagens de suporte</strong> — mantidas para histórico de atendimento.</li></ul>
-    </section>
+  <section class="como" id="como-funciona" aria-labelledby="titulo-como">
+    <div class="como-interno">
+      <h2 id="titulo-como">Do espelho ao cuidado certo.</h2>
+      <p class="intro">Você não precisa saber nada de química capilar. O Jubí faz as perguntas, olha as fotos e te devolve um plano.</p>
 
-    <section>
-      <h2>7. Seus direitos</h2>
-      <p>Como titular dos dados, a LGPD garante que você pode, a qualquer momento:</p>
-      <ul><li>Confirmar se tratamos dados seus, e acessá-los;</li><li>Corrigir dados incompletos, inexatos ou desatualizados;</li><li>Pedir anonimização, bloqueio ou eliminação de dados desnecessários ou tratados fora da lei;</li><li>Solicitar a portabilidade dos seus dados a outro fornecedor;</li><li>Pedir a eliminação dos dados tratados com base no seu consentimento;</li><li>Ser informada sobre com quem compartilhamos seus dados;</li><li>Revogar seu consentimento a qualquer momento;</li><li>Excluir sua conta e os dados associados a ela.</li></ul>
-    </section>
+      <div class="palco">
+        <div class="fone fone-fixo" aria-hidden="true"><div class="tela"></div></div>
 
-    <section>
-      <h2>8. Como exercer seus direitos</h2>
-      <p>Para qualquer pedido relacionado aos seus dados, fale com a gente pelo Fale Conosco, na tela de perfil, ou pelo e-mail abaixo. Respondemos dentro do prazo previsto pela LGPD.</p>
-      <p><a href="mailto:merkabamktdigital@gmail.com" rel="noopener">merkabamktdigital@gmail.com</a></p>
-    </section>
+        <ol class="passos">
+          <li class="passo" data-passo="0">
+            <div class="passo-texto">
+              <span class="num" aria-hidden="true">1</span>
+              <h3>Responda 5 perguntas</h3>
+              <p>Como é o seu cabelo, o que te incomoda nele, se você usa ou já usou química, com que frequência lava e se já fez teste de porosidade.</p>
+              <p class="nota"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>Não sabe a sua porosidade? Tudo bem: a IA estima pelas fotos.</p>
+            </div>
+            <div class="fone passo-fone" aria-hidden="true">
+              <div class="tela"><div class="camada">
+                <div class="ilha"></div>
+                <div class="status"><span>9:41</span><span></span></div>
+                <div class="conteudo">
+                  <div class="progresso"><small>Pergunta 1 de 5</small><div class="barra"><i></i></div></div>
+                  <div class="t4 pergunta">Como você descreveria seu cabelo?</div>
+                  <div class="opcoes">
+                    <div class="opcao">Liso</div>
+                    <div class="opcao">Ondulado</div>
+                    <div class="opcao marcada">Cacheado <span class="check"><svg viewBox="0 0 24 24"><path d="M9.5 16.2 5.3 12l-1.4 1.4 5.6 5.6 11-11-1.4-1.4z"/></svg></span></div>
+                    <div class="opcao">Crespo</div>
+                    <div class="opcao">Outro</div>
+                    <div class="opcao">Não sei</div>
+                  </div>
+                  <div class="botao-app">Próximo</div>
+                </div>
+              </div></div>
+            </div>
+          </li>
 
-    <section>
-      <h2>9. Segurança</h2>
-      <p>Seus dados de conta são protegidos por controles de acesso da Supabase, o que significa que, por padrão, cada usuária só consegue ler e alterar os próprios dados. As chaves de acesso à IA nunca ficam no aplicativo — toda chamada à Anthropic acontece no servidor. Nenhum sistema é 100% imune a falhas, mas trabalhamos para manter essas proteções atualizadas.</p>
-    </section>
+          <li class="passo" data-passo="1">
+            <div class="passo-texto">
+              <span class="num" aria-hidden="true">2</span>
+              <h3>Mande 4 fotos</h3>
+              <p>Frente, costas e as duas laterais. É com elas que a IA lê a curvatura, o volume e o estado dos fios.</p>
+              <p class="nota"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1 3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4zm0 6a2.5 2.5 0 0 1 2.5 2.5V11h.5v6H9v-6h.5V9.5A2.5 2.5 0 0 1 12 7zm0 1.4a1.1 1.1 0 0 0-1.1 1.1V11h2.2V9.5A1.1 1.1 0 0 0 12 8.4z"/></svg>As fotos servem só para a análise: não ficam guardadas no Jubí e não são usadas para treinar IA.</p>
+            </div>
+            <div class="fone passo-fone" aria-hidden="true">
+              <div class="tela"><div class="camada">
+                <div class="ilha"></div>
+                <div class="status"><span>9:41</span><span></span></div>
+                <div class="conteudo">
+                  <div class="t4 pergunta">Envie 4 fotos do seu cabelo</div>
+                  <p>Frente, costas e as duas laterais.</p>
+                  <div class="grade-fotos">
+                    <div class="slot cheio"><img src="assets/cachos-1.jpg" alt="" loading="lazy" width="576" height="576"><span>Frente</span><i class="ok"><svg viewBox="0 0 24 24"><path d="M9.5 16.2 5.3 12l-1.4 1.4 5.6 5.6 11-11-1.4-1.4z"/></svg></i></div>
+                    <div class="slot"><svg viewBox="0 0 24 24"><path d="M9 3 7.2 5H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3.2L15 3H9zm3 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg><span>Costas</span></div>
+                    <div class="slot"><svg viewBox="0 0 24 24"><path d="M9 3 7.2 5H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3.2L15 3H9zm3 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg><span>Lado direito</span></div>
+                    <div class="slot"><svg viewBox="0 0 24 24"><path d="M9 3 7.2 5H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3.2L15 3H9zm3 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg><span>Lado esquerdo</span></div>
+                  </div>
+                </div>
+              </div></div>
+            </div>
+          </li>
 
-    <section>
-      <h2>10. Menores de idade</h2>
-      <p>O Jubí é destinado a maiores de 18 anos. Não coletamos intencionalmente dados de menores de idade. Se você é responsável por uma menor de idade e acredita que ela usou o app, entre em contato pelos canais da seção 8 para que possamos avaliar a exclusão dos dados.</p>
-    </section>
+          <li class="passo" data-passo="2">
+            <div class="passo-texto">
+              <span class="num" aria-hidden="true">3</span>
+              <h3>Receba o seu diagnóstico</h3>
+              <p>Tipo, porosidade, densidade e estado atual dos fios, mais os ingredientes que funcionam pra você e os que é melhor evitar no rótulo.</p>
+              <p class="nota"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5c-1.7-4.4-6-7.5-11-7.5zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>Você vê o resultado inteiro antes de criar conta.</p>
+            </div>
+            <div class="fone passo-fone" aria-hidden="true">
+              <div class="tela"><div class="camada tem-exemplo"><span class="exemplo">Exemplo</span>
+                <div class="ilha"></div>
+                <div class="status"><span>9:41</span><span></span></div>
+                <div class="conteudo">
+                  <div class="metricas">
+                    <div class="metrica"><small>Tipo</small><b>Cacheado</b></div>
+                    <div class="metrica"><small>Porosidade</small><b>Alta</b></div>
+                    <div class="metrica"><small>Densidade</small><b>Média</b></div>
+                    <div class="metrica alerta"><small>Estado atual</small><b>Ressecado</b></div>
+                  </div>
+                  <div class="t4">Ingredientes que funcionam para você</div>
+                  <div class="cartao">
+                    <div class="ingrediente">Manteiga de karité</div>
+                    <div class="destaque-bom">Para você: segura a hidratação no fio poroso.</div>
+                  </div>
+                  <div class="cartao">
+                    <div class="ingrediente">Glicerina</div>
+                    <div class="destaque-bom">Para você: puxa umidade para os fios ressecados.</div>
+                  </div>
+                  <div class="t4">Ingredientes a evitar</div>
+                  <div class="cartao">
+                    <div class="ingrediente ruim">Sulfato (SLS)</div>
+                    <p>Limpa demais e tira a oleosidade natural do fio.</p>
+                  </div>
+                </div>
+              </div></div>
+            </div>
+          </li>
 
-    <section>
-      <h2>11. Identificadores no aparelho</h2>
-      <p>O Jubí não usa cookies de rastreamento publicitário. Usamos dois identificadores técnicos, gerados e guardados no próprio aparelho:</p>
-      <ul><li><strong>ID do aparelho</strong> — permite liberar a primeira análise gratuita e impedir uso abusivo da IA antes do cadastro.</li><li><strong>ID anônimo de uso</strong> — liga os eventos do mesmo aparelho antes de você criar conta, para entendermos como o app é usado.</li></ul>
-      <p>Nenhum dos dois identifica você pelo nome sozinho.</p>
-    </section>
+          <li class="passo" data-passo="3">
+            <div class="passo-texto">
+              <span class="num" aria-hidden="true">4</span>
+              <h3>Siga a sua rotina</h3>
+              <p>Um cronograma capilar para o mês, com hidratação, nutrição e reconstrução no ritmo das suas lavagens. Ficou com dúvida? Pergunte para a Jubí, a especialista de IA do app.</p>
+            </div>
+            <div class="fone passo-fone" aria-hidden="true">
+              <div class="tela"><div class="camada tem-exemplo"><span class="exemplo">Exemplo</span>
+                <div class="ilha"></div>
+                <div class="status"><span>9:41</span><span></span></div>
+                <div class="conteudo">
+                  <div class="cab-grad"><strong>Sua Rotina</strong><span>Cronograma capilar personalizado</span></div>
+                  <div class="t4">Seu mês em números</div>
+                  <div class="numeros">
+                    <div class="numero n-lav"><b>8</b><small>lavagens</small></div>
+                    <div class="numero n-hid"><b>4</b><small>hidratações</small></div>
+                    <div class="numero n-nut"><b>3</b><small>nutrições</small></div>
+                    <div class="numero n-rec"><b>1</b><small>reconstrução</small></div>
+                  </div>
+                  <div class="t4">Esta semana</div>
+                  <div class="dia"><b>Seg</b><span class="etiqueta e-hid">Hidratação</span></div>
+                  <div class="dia"><b>Qua</b><span class="etiqueta e-lav">Só lavagem</span></div>
+                  <div class="dia"><b>Sex</b><span class="etiqueta e-nut">Nutrição</span></div>
+                  <div class="dia"><b>Dom</b><span class="etiqueta e-rec">Reconstrução</span></div>
+                </div>
+              </div></div>
+            </div>
+          </li>
 
-    <section>
-      <h2>12. Mudanças nesta política</h2>
-      <p>Podemos atualizar esta política quando o app mudar a forma como trata dados. Alterações relevantes serão comunicadas dentro do app. A data no topo desta tela sempre indica a versão mais recente.</p>
-    </section>
-  </main>
+          <li class="passo" data-passo="4">
+            <div class="passo-texto">
+              <span class="num" aria-hidden="true">5</span>
+              <h3>Encontre os produtos certos</h3>
+              <p>O Jubí cruza o seu diagnóstico com um catálogo de 115 produtos e indica os 3 melhores de cada categoria, do mais acessível ao premium, explicando por que cada um combina com você.</p>
+              <p class="nota"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>A análise e a rotina são grátis. As indicações de produtos são liberadas com uma compra única dentro do app.</p>
+            </div>
+            <div class="fone passo-fone" aria-hidden="true">
+              <div class="tela"><div class="camada tem-exemplo"><span class="exemplo">Exemplo</span>
+                <div class="ilha"></div>
+                <div class="status"><span>9:41</span><span></span></div>
+                <div class="conteudo">
+                  <div class="t4 pergunta">Seus produtos</div>
+                  <div class="abas"><span class="aba">Shampoo</span><span class="aba">Condicionador</span><span class="aba ativa">Máscara</span></div>
+                  <div class="produto">
+                    <div class="pote" style="background: var(--menta-fundo)"><svg viewBox="0 0 24 24"><rect x="5" y="9" width="14" height="12" rx="3" fill="#34D399"/><rect x="4" y="5" width="16" height="5" rx="2" fill="#059669"/></svg></div>
+                    <div><b>Máscara de hidratação com karité</b><span class="faixa e-nut">Acessível</span></div>
+                  </div>
+                  <div class="produto">
+                    <div class="pote" style="background: var(--lilas-forte)"><svg viewBox="0 0 24 24"><rect x="5" y="9" width="14" height="12" rx="3" fill="#C084FC"/><rect x="4" y="5" width="16" height="5" rx="2" fill="#9333EA"/></svg></div>
+                    <div><b>Máscara de nutrição com óleos vegetais</b><span class="faixa e-rec">Intermediária</span></div>
+                  </div>
+                  <div class="produto">
+                    <div class="pote" style="background: #EDE7F6"><svg viewBox="0 0 24 24"><rect x="5" y="9" width="14" height="12" rx="3" fill="#8B7AA6"/><rect x="4" y="5" width="16" height="5" rx="2" fill="#241433"/></svg></div>
+                    <div><b>Máscara de umectação para cachos</b><span class="faixa" style="background: #EDE7F6; color: var(--tinta)">Premium</span></div>
+                  </div>
+                  <div class="cartao"><p><b style="color:#374151">Por que combina:</b> sua porosidade alta pede manteigas e óleos que selam a cutícula.</p></div>
+                </div>
+              </div></div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
 
-  <footer>
-    Dúvidas sobre esta política? Escreva para
-    <a href="mailto:merkabamktdigital@gmail.com">merkabamktdigital@gmail.com</a>.
-  </footer>
+  <section class="fecho" id="baixar" aria-labelledby="titulo-baixar">
+    <div class="chamada">
+      <div>
+        <h2 id="titulo-baixar">Ame sua beleza autêntica.</h2>
+        <p>Baixe o Jubí e descubra, de uma vez, do que o seu cabelo precisa.</p>
+        <div class="lojas">
+          <a class="loja clara" href="#LINK-GOOGLE-PLAY">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>
+            <span><small>Disponível no</small><strong>Google Play</strong></span>
+          </a>
+          <a class="loja clara" href="#LINK-APP-STORE">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            <span><small>Baixar na</small><strong>App Store</strong></span>
+          </a>
+        </div>
+      </div>
+      <img class="icone-app" src="assets/jubi-icone.png" alt="" width="512" height="512" loading="lazy">
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="rodape">
+    <p>Jubí é um app da Merkaba Marketing Ltda, Belo Horizonte/MG. Para maiores de 18 anos.</p>
+    <p><a href="privacidade/">Política de privacidade</a> · Fale com a gente: <a href="mailto:merkabamktdigital@gmail.com">merkabamktdigital@gmail.com</a></p>
+  </div>
+</footer>
+
+<script>
+  // Desktop: o celular da seção "Como funciona" fica parado e troca de tela a cada passo.
+  (function () {
+    document.documentElement.classList.add('js');
+    var fixo = document.querySelector('.fone-fixo .tela');
+    var passos = Array.prototype.slice.call(document.querySelectorAll('.passo'));
+    if (!fixo || !passos.length) return;
+
+    var camadas = passos.map(function (passo, i) {
+      var camada = passo.querySelector('.camada').cloneNode(true);
+      if (i === 0) camada.classList.add('ativa');
+      fixo.appendChild(camada);
+      return camada;
+    });
+    passos[0].classList.add('ativo');
+
+    function ativar(i) {
+      passos.forEach(function (p, j) { p.classList.toggle('ativo', j === i); });
+      camadas.forEach(function (c, j) { c.classList.toggle('ativa', j === i); });
+    }
+
+    if (!('IntersectionObserver' in window)) return;
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (e.isIntersecting) ativar(Number(e.target.getAttribute('data-passo')));
+      });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    passos.forEach(function (p) { observador.observe(p); });
+  })();
+</script>
 </body>
 </html>
